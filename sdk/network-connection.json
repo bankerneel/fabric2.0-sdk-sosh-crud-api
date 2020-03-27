@@ -1,0 +1,60 @@
+{
+    "name": "sosh-network-users",
+    "version": "1.0.0",
+    "client": {
+        "organization": "users",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "organizations": {
+        "users": {
+            "mspid": "usersMSP",
+            "peers": [
+                "peer0.users.sosh.com",
+                "peer1.users.sosh.com"
+            ],
+            "certificateAuthorities": [
+                "ca_users"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.users.sosh.com": {
+            "url": "grpcs://18.218.82.29:8051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICFzCCAb2gAwIBAgIUIBL1kwu5EvHBcd4ecka4au57B24wCgYIKoZIzj0EAwIw\naDELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMt\nY2Etc2VydmVyMB4XDTIwMDMyMzEyMTkwMFoXDTM1MDMyMDEyMTkwMFowaDELMAkG\nA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBl\ncmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMtY2Etc2Vy\ndmVyMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEMU9SC3KkL5CSn23MmGatp9kK\nU5EbRoz7faMRwZ2TYwwkgwdNRU+AGdFKE/1iwmqZpZ8MmhVesLzcsE60iRcJDKNF\nMEMwDgYDVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYE\nFDUAE5ylRSSimt9wOE8Qpq5vTjYAMAoGCCqGSM49BAMCA0gAMEUCIQCclSlPBoPE\nP4ZOtQO71n6xTjgKNiR4VEyeeZiuh+AKoQIgdql5OploWNfhUdkItU2K8dNpdkW3\nVw/tKYB2X+8Kjyw=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.users.sosh.com",
+                "hostnameOverride": "peer0.users.sosh.com"
+            }
+        },
+        "peer1.users.sosh.com": {
+            "url": "grpcs://18.218.82.29:10051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICFzCCAb2gAwIBAgIUIBL1kwu5EvHBcd4ecka4au57B24wCgYIKoZIzj0EAwIw\naDELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMt\nY2Etc2VydmVyMB4XDTIwMDMyMzEyMTkwMFoXDTM1MDMyMDEyMTkwMFowaDELMAkG\nA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBl\ncmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMtY2Etc2Vy\ndmVyMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEMU9SC3KkL5CSn23MmGatp9kK\nU5EbRoz7faMRwZ2TYwwkgwdNRU+AGdFKE/1iwmqZpZ8MmhVesLzcsE60iRcJDKNF\nMEMwDgYDVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYE\nFDUAE5ylRSSimt9wOE8Qpq5vTjYAMAoGCCqGSM49BAMCA0gAMEUCIQCclSlPBoPE\nP4ZOtQO71n6xTjgKNiR4VEyeeZiuh+AKoQIgdql5OploWNfhUdkItU2K8dNpdkW3\nVw/tKYB2X+8Kjyw=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.users.sosh.com",
+                "hostnameOverride": "peer1.users.sosh.com"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca_users": {
+            "url": "https://18.218.82.29:7054",
+            "caName": "ca_users",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICFzCCAb2gAwIBAgIUIBL1kwu5EvHBcd4ecka4au57B24wCgYIKoZIzj0EAwIw\naDELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMt\nY2Etc2VydmVyMB4XDTIwMDMyMzEyMTkwMFoXDTM1MDMyMDEyMTkwMFowaDELMAkG\nA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBl\ncmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMtY2Etc2Vy\ndmVyMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEMU9SC3KkL5CSn23MmGatp9kK\nU5EbRoz7faMRwZ2TYwwkgwdNRU+AGdFKE/1iwmqZpZ8MmhVesLzcsE60iRcJDKNF\nMEMwDgYDVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYE\nFDUAE5ylRSSimt9wOE8Qpq5vTjYAMAoGCCqGSM49BAMCA0gAMEUCIQCclSlPBoPE\nP4ZOtQO71n6xTjgKNiR4VEyeeZiuh+AKoQIgdql5OploWNfhUdkItU2K8dNpdkW3\nVw/tKYB2X+8Kjyw=\n-----END CERTIFICATE-----\n"
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

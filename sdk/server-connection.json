@@ -1,0 +1,60 @@
+{
+    "name": "sosh-network",
+    "version": "1.0.0",
+    "client": {
+        "organization": "superadmin",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "organizations": {
+        "Org1": {
+            "mspid": "superadminMSP",
+            "peers": [
+                "peer0.superadmin.sosh.com",
+                "peer1.superadmin.sosh.com"
+            ],
+            "certificateAuthorities": [
+                "ca_superadmin"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.superadmin.sosh.com": {
+            "url": "grpcs://peer0.superadmin.sosh.com:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICFjCCAb2gAwIBAgIUQmM/YE/ruaW9StB/McEJySFtuN4wCgYIKoZIzj0EAwIw\naDELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMt\nY2Etc2VydmVyMB4XDTIwMDMyMzEyMTkwMFoXDTM1MDMyMDEyMTkwMFowaDELMAkG\nA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBl\ncmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMtY2Etc2Vy\ndmVyMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEohBAl4Ugu0gV9kv7i9Tv+QD+\n/Fg3TSFtxILlWOZjqxsmooy4A8fU2Bfbo1j/7109FIY9NUDykIw8i2LrAnW1baNF\nMEMwDgYDVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYE\nFLBWa6wFs35XPvgjEpjVeQpDrqOAMAoGCCqGSM49BAMCA0cAMEQCIHHmpppEgRaY\nxWplM7VI/f9TQ/PMN6ZtPPwUUCKpKjMSAiBxH5f4tk8GOLiPnEeW/mAlz/VYDygX\nODl4GsrC/KbTyg==\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.superadmin.sosh.com",
+                "hostnameOverride": "peer0.superadmin.sosh.com"
+            }
+        },
+        "peer1.superadmin.sosh.com": {
+            "url": "grpcs://peer1.superadmin.sosh.com:8051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICFjCCAb2gAwIBAgIUQmM/YE/ruaW9StB/McEJySFtuN4wCgYIKoZIzj0EAwIw\naDELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMt\nY2Etc2VydmVyMB4XDTIwMDMyMzEyMTkwMFoXDTM1MDMyMDEyMTkwMFowaDELMAkG\nA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBl\ncmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMtY2Etc2Vy\ndmVyMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEohBAl4Ugu0gV9kv7i9Tv+QD+\n/Fg3TSFtxILlWOZjqxsmooy4A8fU2Bfbo1j/7109FIY9NUDykIw8i2LrAnW1baNF\nMEMwDgYDVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYE\nFLBWa6wFs35XPvgjEpjVeQpDrqOAMAoGCCqGSM49BAMCA0cAMEQCIHHmpppEgRaY\nxWplM7VI/f9TQ/PMN6ZtPPwUUCKpKjMSAiBxH5f4tk8GOLiPnEeW/mAlz/VYDygX\nODl4GsrC/KbTyg==\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.superadmin.sosh.com",
+                "hostnameOverride": "peer1.superadmin.sosh.com"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca.superadmin.sosh.com": {
+            "url": "https://ca_superadmin:7054",
+            "caName": "ca-superadmin",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICcjCCAhmgAwIBAgIUccP4IV17IxBemZpWJu1eB+itCI0wCgYIKoZIzj0EAwIw\naDELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMt\nY2Etc2VydmVyMB4XDTIwMDMyMzEyMTkwMFoXDTIxMDMyMzEyMTkwMFowZDELMAkG\nA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBl\ncmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRUwEwYDVQQDEwxiNTY0YTFmNjdmZDkw\nWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASF9KRHN/lCzTvub9LPv1PWBYxZMy2L\nfmIq37nQHZYPHXfFTdHr4Pcx8smA7razmA+SWPi/0aZVfyzQTyjbCo65o4GkMIGh\nMA4GA1UdDwEB/wQEAwIDqDAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIw\nDAYDVR0TAQH/BAIwADAdBgNVHQ4EFgQUUTWKcUHyBmmTadmjhhpop8LPwdwwHwYD\nVR0jBBgwFoAUsFZrrAWzflc++CMSmNV5CkOuo4AwIgYDVR0RBBswGYIMYjU2NGEx\nZjY3ZmQ5gglsb2NhbGhvc3QwCgYIKoZIzj0EAwIDRwAwRAIgOTEoiGsRDhKBfsTb\nKSl5ppHuWnLJKXaO+KIpCD6ZS/8CIGWujxBamSbiulgsOX/nreUuovqzGp92arky\nOMzjdQbO\n-----END CERTIFICATE-----"
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}
