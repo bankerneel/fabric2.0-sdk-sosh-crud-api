@@ -9,7 +9,7 @@ const path = require('path');
 const fs = require('fs');
 
 
-module.exports.queryWalletDetails = async (username, channelName, contractName, functionName, uniqueId,req,res)=> {
+module.exports.queryWalletDetails = async (username, channelName, contractName, functionName, UniqueId)=> {
     try {
         // load the network configuration
         const ccpPath = path.resolve(__dirname, '.', 'server-connection.json');
@@ -25,7 +25,7 @@ module.exports.queryWalletDetails = async (username, channelName, contractName, 
         if (!identity) {
             console.log('An identity for the user ',username,' does not exist in the wallet');
             console.log('Run the registerUser.js application before retrying');
-            return res.status(500).send('An identity for the user ',username,' does not exist in the wallet');
+            return "An identity for the user ',username,' does not exist in the wallet";
         }
 
         // Create a new gateway for connecting to our peer node.
@@ -41,13 +41,12 @@ module.exports.queryWalletDetails = async (username, channelName, contractName, 
         /*-----------------QueryWallet Details
             await contract.evaluateTransaction('QueryWalletData','UniqueId')
         */
-        const result = await contract.evaluateTransaction(functionName, uniqueId);
+        const result = await contract.evaluateTransaction(functionName, UniqueId);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
-        return res.status(200).send(`Transaction has been evaluated, result is: ${result.toString()}`)
-
+        return result.toString()
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
-        return res.status(500).send(`Failed to evaluate transaction: ${error}`)
+        return error
         process.exit(1);
     }
 }

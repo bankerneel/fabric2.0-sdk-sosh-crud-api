@@ -6,9 +6,9 @@ const bodyParser = require('body-parser')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
+app.use(logger('dev'));
 
 app.use('/api/v1',wallet);
-
 
 const port = process.env.PORT || 3000;
 app.set('port', port)

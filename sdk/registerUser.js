@@ -9,7 +9,7 @@ const FabricCAServices = require('fabric-ca-client');
 const fs = require('fs');
 const path = require('path');
 
-module.exports.registerUser = async (username,req,res)=> {
+module.exports.registerUser = async (username)=> {
     try {
 
         //Getting Username
@@ -31,7 +31,7 @@ module.exports.registerUser = async (username,req,res)=> {
         const userIdentity = await wallet.get(username);
         if (userIdentity) {
             console.log('An identity for the user ',username,' already exists in the wallet');
-            return res.status(500).send('An identity for the user ',username,' already exists in the wallet')
+            return 'An identity for the user '+username+' already exists in the wallet';
         }
 
         // Check to see if we've already enrolled the admin user.
@@ -39,7 +39,7 @@ module.exports.registerUser = async (username,req,res)=> {
         if (!adminIdentity) {
             console.log('An identity for the admin user "admin" does not exist in the wallet');
             console.log('Run the enrollAdmin.js application before retrying');
-            return res.status(500).send('An identity for the admin user "admin" does not exist in the wallet');
+            return 'An identity for the admin user "admin" does not exist in the wallet';
         }
 
         // build a user object for authenticating with the CA
@@ -66,11 +66,11 @@ module.exports.registerUser = async (username,req,res)=> {
         };
         await wallet.put(username, x509Identity);
         console.log('Successfully registered and enrolled admin user ',username,' and imported it into the wallet');
-        return res.status(200).send('Successfully registered and enrolled admin user: '+username+' and imported it into the wallet')
+        return 'Successfully registered and enrolled admin user: '+username+' and imported it into the wallet'
 
     } catch (error) {
         console.error(`Failed to register user : ${error}`);
-        return res.status(500).send(`Failed to register user : ${error}`    )
+        return error
         process.exit(1);
     }
 }

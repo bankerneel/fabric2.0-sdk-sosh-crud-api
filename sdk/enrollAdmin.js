@@ -9,7 +9,7 @@ const { Wallets } = require('fabric-network');
 const fs = require('fs');
 const path = require('path');
 
-module.exports.enrollAdmin = async (req,res)=> {
+module.exports.enrollAdmin = async ()=> {
     try {
         // load the network configuration
         const ccpPath = path.resolve(__dirname, '.', 'server-connection.json');
@@ -29,7 +29,7 @@ module.exports.enrollAdmin = async (req,res)=> {
         const identity = await wallet.get('admin');
         if (identity) {
             console.log('An identity for the admin user "admin" already exists in the wallet');
-            return res.status(500).send("An identity for the admin user admin already exists in the wallet");
+            return "An identity for the admin user admin already exists in the wallet";
         }
 
         // Enroll the admin user, and import the new identity into the wallet.
@@ -44,10 +44,10 @@ module.exports.enrollAdmin = async (req,res)=> {
         };
         await wallet.put('admin', x509Identity);
         console.log('Successfully enrolled admin user "admin" and imported it into the wallet');
-        return res.status(200).send('Successfully enrolled admin user admin and imported it into the wallet')
+        return 'Successfully enrolled admin user admin and imported it into the wallet'
     } catch (error) {
         console.error(`Failed to enroll admin user "admin": ${error}`);
-        return res.status(500).send(`Failed to enroll admin user "admin": ${error}`)
+        return error
         process.exit(1);
     }
 }
