@@ -6,7 +6,7 @@ module.exports = {
         console.log("Inside Register Admin Controller")
         try {
             let register = await wallet.registerAdmin()
-            return register
+            return responseHandler.sendResponse(res,200,register)
         } catch (error) {
             console.log("error", error)
             throw error
@@ -15,11 +15,10 @@ module.exports = {
     registerUser : async (req,res)=> {
         console.log("Inside Register User Controller")
         try {
-            let username = req.body.name
+            let username = req.body.username
 
             let register = await wallet.registerUser(username)
-            
-            return register
+            return responseHandler.sendResponse(res,200,register)
         } catch (error) {
             console.log("error", error)
             throw error
@@ -28,13 +27,13 @@ module.exports = {
     createWallet : async (req,res)=> {
         console.log("Inside Create Wallet Controller")
         try {
-            let username = req.body.name
+            let username = req.body.username
 
             var arguments = [req.body.UniqueId,req.body.MobileNumber, req.body.CreatedFrom,req.body.WalletType,req.body.WalletBalance,req.body.Hours]
             
             let createWallet = await wallet.invokeChaincode(username, 'mychannel', 'walletcc', 'CreateWallet', arguments)
-
-            return createWallet
+            let msg = "Wallet of: "+username+" is created with id: "+req.body.UniqueId+createWallet
+            return responseHandler.sendResponse(res,200,msg)
         } catch (error) {
             console.log("error", error)
             throw error
@@ -43,13 +42,14 @@ module.exports = {
     updateWalletDetails : async (req,res)=> {
         console.log("Inside Update Wallet details Controller")
         try {
-            let username = req.body.name
+            let username = req.body.username
 
             var arguments = [req.body.UniqueId, req.body.fieldName, req.body.Value]
 
             let updateWallet = await wallet.invokeChaincode(username, 'mychannel', 'walletcc', 'UpdateWalletDetails', arguments)
+            let msg = "Wallet of: "+username+" with id: "+req.body.UniqueId +" is updated with "+ req.body.fieldName +" = "+req.body.Value+updateWallet
 
-            return updateWallet
+            return responseHandler.sendResponse(res,200,msg)
         } catch (error) {
             console.log("error", error)
             throw error
@@ -58,11 +58,11 @@ module.exports = {
     showWalletDetails : async (req,res)=> {
         console.log("Inside Show Wallet Details Controller")
         try {
-            let username = req.body.name
-            let UniqueId = req.body.id
+            let username = req.body.username
+            let UniqueId = req.body.UniqueId
 
             let showWallet = await wallet.queryChaincode(username, 'mychannel', 'walletcc', 'QueryWalletData', UniqueId)
-            return showWallet
+            return responseHandler.sendResponse(res,200,showWallet)
         } catch (error) {
             console.log("error", error)
             throw error
@@ -71,10 +71,12 @@ module.exports = {
     addFunds : async (req,res)=> {
         console.log("Inside Add Funds Controller")
         try {
-            let username = req.body.name
+            let username = req.body.username
             var arguments = [req.body.UniqueId, req.body.Amount]
             let addFunds = await wallet.invokeChaincode(username, 'mychannel', 'walletcc', 'AddFunds', arguments)
-            return addFunds
+            let msg = "Amount of "+req.body.Amount +" has been credited to Wallet linked with: "+username+" having wallet id: "+  req.body.UniqueId + addFunds
+
+            return responseHandler.sendResponse(res,200,msg)
         } catch (error) {
             console.log("error", error)
             throw error
@@ -83,12 +85,13 @@ module.exports = {
     withdrawFunds : async(req,res)=> {
         console.log("Inside Withdraw Funds Controller")
         try {
-            let username = req.body.name
+            let username = req.body.username
             var arguments = [req.body.UniqueId, req.body.Amount]
 
-            let addFunds = await wallet.invokeChaincode(username, 'mychannel', 'walletcc', 'WithdrawFunds', arguments)
+            let withdrawFunds = await wallet.invokeChaincode(username, 'mychannel', 'walletcc', 'WithdrawFunds', arguments)
+            let msg = "Amount of "+req.body.Amount +" has been debited from Wallet linked with: "+username+" having wallet id: "+  req.body.UniqueId + withdrawFunds
 
-            return addFunds
+            return responseHandler.sendResponse(res,200,msg)
         } catch (error) {
             console.log("error", error)
             throw error
@@ -97,12 +100,12 @@ module.exports = {
     transferFunds : async (req,res)=> {
         console.log("Inside Transfer Funds Controller")
         try {
-            let username =  req.body.name
-            var arguments = [req.body.fromId, req.body.toTd,req.body.Amount]
+            let username =  req.body.username
+            var arguments = [req.body.fromId, req.body.toId,req.body.Amount]
 
             let transferFunds = await wallet.invokeChaincode(username, 'mychannel', 'walletcc', 'TransferFunds', arguments)
-
-            return transferFunds
+            let msg = "Amount of "+ req.body.Amount +" has been to transfered from: "+ req.body.fromId+ " to "+req.body.toId+transferFunds
+            return responseHandler.sendResponse(res,200,msg)
         } catch (error) {
             console.log("error", error)
             throw error
@@ -111,15 +114,15 @@ module.exports = {
     deleteWallet : async (req,res)=> {
         console.log("Inside Delete Wallet Controller")
         try {
-            let username = req.body.name
-            var UniqueId = req.body.UniqueId
+            let username = req.body.username
+            var UniqueId = [req.body.UniqueId]
 
             let deleteWallet = await wallet.invokeChaincode(username, 'mychannel', 'walletcc', 'DeleteWallet', UniqueId)
-
-            return deleteWallet
+            let msg = "Wallet having id: "+ UniqueId+" has been deleted "+deleteWallet
+            return responseHandler.sendResponse(res,200,msg)
         } catch (error) {
             console.log("error", error)
-            
+            throw error
         }
     }
 }

@@ -7,6 +7,8 @@
         "npm": ">=5"
     },
     "scripts": {
+        "start": "node ./app.js",
+        "dev": "nodemon ./app.js",
         "lint": "eslint .",
         "pretest": "npm run lint",
         "test": "nyc mocha --recursive"
@@ -19,7 +21,8 @@
         "express": "^4.17.1",
         "fabric-ca-client": "beta",
         "fabric-network": "beta",
-        "http": "0.0.0"
+        "http": "0.0.0",
+        "morgan": "^1.10.0"
     },
     "devDependencies": {
         "chai": "^4.2.0",

@@ -25,7 +25,7 @@ module.exports.queryWalletDetails = async (username, channelName, contractName, 
         if (!identity) {
             console.log('An identity for the user ',username,' does not exist in the wallet');
             console.log('Run the registerUser.js application before retrying');
-            return "An identity for the user ',username,' does not exist in the wallet";
+            return 'An identity for the user '+username+' does not exist in the wallet';
         }
 
         // Create a new gateway for connecting to our peer node.
@@ -43,7 +43,8 @@ module.exports.queryWalletDetails = async (username, channelName, contractName, 
         */
         const result = await contract.evaluateTransaction(functionName, UniqueId);
         console.log(`Transaction has been evaluated, result is: ${result.toString()}`);
-        return result.toString()
+        let result1 = JSON.parse(result.toString())
+        return result1
     } catch (error) {
         console.error(`Failed to evaluate transaction: ${error}`);
         return error

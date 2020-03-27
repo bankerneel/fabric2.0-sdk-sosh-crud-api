@@ -21,6 +21,7 @@ module.exports.invokeChaincode = async (username, channelName, contractName, fun
 
         let arrayOfArgs = Object.values(arguments)
         console.log('arrayOfArgs', typeof arrayOfArgs.join())
+        console.log('details',arrayOfArgs)
 
         // Check to see if we've already enrolled the user.
         const identity = await wallet.get(username);

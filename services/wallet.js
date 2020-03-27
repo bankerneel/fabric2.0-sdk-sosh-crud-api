@@ -37,7 +37,7 @@ module.exports = {
         throw error
         }
     },
-    queryChaincode: async (req, res)=>{
+    queryChaincode: async (username, channelName, contractName, functionName, uniqueId )=>{
         console.log('Inside Query Chaincode Service')
         try {
             let query = await queryWalletDetails.queryWalletDetails(username, channelName, contractName, functionName, uniqueId )
