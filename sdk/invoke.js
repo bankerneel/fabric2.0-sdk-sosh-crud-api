@@ -11,7 +11,7 @@ const path = require('path');
 module.exports.invokeChaincode = async (username, channelName, contractName, functionName, arguments)=> {
     try {
         // load the network configuration
-        const ccpPath = path.resolve(__dirname, '.', 'server-connection.json');
+        const ccpPath = path.resolve(__dirname, '.', 'network-connection.json');
         let ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
 
         // Create a new file system based wallet for managing identities.
@@ -33,7 +33,7 @@ module.exports.invokeChaincode = async (username, channelName, contractName, fun
 
         // Create a new gateway for connecting to our peer node.
         const gateway = new Gateway();
-        await gateway.connect(ccp, { wallet, identity: username, discovery: { enabled: true, asLocalhost: false } });
+        await gateway.connect(ccp, { wallet, identity: username, discovery: { enabled: true, asLocalhost: true } });
 
         // Get the network (channel) our contract is deployed to.
         const network = await gateway.getNetwork(channelName);

@@ -29,9 +29,9 @@ module.exports = {
         try {
             let username = req.body.username
 
-            let arguments = [req.body.UniqueId,req.body.MobileNumber, req.body.CreatedFrom,req.body.WalletType,req.body.WalletBalance,req.body.Hours]
+            let arguments = [req.body.UniqueId, req.body.CreatedFrom,req.body.WalletType]
             
-            let createWallet = await wallet.invokeChaincode(username, 'mychannel', 'walletcc', 'CreateWallet', arguments)
+            let createWallet = await wallet.invokeChaincode(username, 'mychannel', 'wallet', 'CreateWallet', arguments)
             let msg = "Wallet of: "+username+" is created with id: "+req.body.UniqueId+createWallet
             return responseHandler.sendResponse(res,200,msg)
         } catch (error) {
@@ -44,10 +44,25 @@ module.exports = {
         try {
             let username = req.body.username
 
-            let arguments = [req.body.UniqueId, req.body.fieldName, req.body.Value]
-
-            let updateWallet = await wallet.invokeChaincode(username, 'mychannel', 'walletcc', 'UpdateWalletDetails', arguments)
-            let msg = "Wallet of: "+username+" with id: "+req.body.UniqueId +" is updated with "+ req.body.fieldName +" = "+req.body.Value+updateWallet
+            let Fields = req.body.fieldNames
+            let values = req.body.Values
+            let i=0
+            key="\[",
+            value="\["
+            let Fieldlength=Fields.length
+            for(i=0;i<Fieldlength;i++){
+                if(i==Fieldlength-1){
+                    key+="\""+Fields[i]+"\"]"
+                    value+=values[i]+"]"
+                }else{
+                    key+="\""+Fields[i]+"\","
+                    value+=values[i]+","
+                }
+            }
+            let arguments = [req.body.UniqueId,''+key+'',''+value+'']
+            console.log("arguments", arguments)
+            let updateWallet = await wallet.invokeChaincode(username, 'mychannel', 'wallet', 'UpdateWalletDetails', arguments)
+            let msg = "Wallet of: "+username+" with id: "+req.body.UniqueId +" is updated with "+ req.body.fieldNames +" = "+req.body.Values+updateWallet
 
             return responseHandler.sendResponse(res,200,msg)
         } catch (error) {
@@ -61,7 +76,7 @@ module.exports = {
             let username = req.body.username
             let UniqueId = req.body.UniqueId
 
-            let showWallet = await wallet.queryChaincode(username, 'mychannel', 'walletcc', 'QueryWalletData', UniqueId)
+            let showWallet = await wallet.queryChaincode(username, 'mychannel', 'wallet', 'QueryWalletData', UniqueId)
             return responseHandler.sendResponse(res,200,showWallet)
         } catch (error) {
             console.log("error", error)
@@ -73,7 +88,7 @@ module.exports = {
         try {
             let username = req.body.username
             let arguments = [req.body.UniqueId, req.body.Amount]
-            let addFunds = await wallet.invokeChaincode(username, 'mychannel', 'walletcc', 'AddFunds', arguments)
+            let addFunds = await wallet.invokeChaincode(username, 'mychannel', 'wallet', 'AddFunds', arguments)
             let msg = "Amount of "+req.body.Amount +" has been credited to Wallet linked with: "+username+" having wallet id: "+  req.body.UniqueId + addFunds
 
             return responseHandler.sendResponse(res,200,msg)
@@ -88,7 +103,7 @@ module.exports = {
             let username = req.body.username
             let arguments = [req.body.UniqueId, req.body.Amount]
 
-            let withdrawFunds = await wallet.invokeChaincode(username, 'mychannel', 'walletcc', 'WithdrawFunds', arguments)
+            let withdrawFunds = await wallet.invokeChaincode(username, 'mychannel', 'wallet', 'WithdrawFunds', arguments)
             let msg = "Amount of "+req.body.Amount +" has been debited from Wallet linked with: "+username+" having wallet id: "+  req.body.UniqueId + withdrawFunds
 
             return responseHandler.sendResponse(res,200,msg)
@@ -103,7 +118,7 @@ module.exports = {
             let username =  req.body.username
             let arguments = [req.body.fromId, req.body.toId,req.body.Amount]
 
-            let transferFunds = await wallet.invokeChaincode(username, 'mychannel', 'walletcc', 'TransferFunds', arguments)
+            let transferFunds = await wallet.invokeChaincode(username, 'mychannel', 'wallet', 'TransferFunds', arguments)
             let msg = "Amount of "+ req.body.Amount +" has been to transfered from: "+ req.body.fromId+ " to "+req.body.toId+transferFunds
             return responseHandler.sendResponse(res,200,msg)
         } catch (error) {
@@ -117,7 +132,7 @@ module.exports = {
             let username = req.body.username
             let UniqueId = [req.body.UniqueId]
 
-            let deleteWallet = await wallet.invokeChaincode(username, 'mychannel', 'walletcc', 'DeleteWallet', UniqueId)
+            let deleteWallet = await wallet.invokeChaincode(username, 'mychannel', 'wallet', 'DeleteWallet', UniqueId)
             let msg = "Wallet having id: "+ UniqueId+" has been deleted "+deleteWallet
             return responseHandler.sendResponse(res,200,msg)
         } catch (error) {

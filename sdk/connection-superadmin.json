@@ -1,0 +1,60 @@
+{
+    "name": "first-network-superadmin",
+    "version": "1.0.0",
+    "client": {
+        "organization": "superadmin",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "organizations": {
+        "superadmin": {
+            "mspid": "superadminMSP",
+            "peers": [
+                "peer0.superadmin.sosh.com",
+                "peer1.superadmin.sosh.com"
+            ],
+            "certificateAuthorities": [
+                "ca.superadmin.sosh.com"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.superadmin.sosh.com": {
+            "url": "grpcs://peer0.superadmin.sosh.com:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICFzCCAb2gAwIBAgIUXYIretT5j+z0zl2Lr+K68bW9Ex8wCgYIKoZIzj0EAwIw\naDELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMt\nY2Etc2VydmVyMB4XDTIwMDQwMTA2MjIwMFoXDTM1MDMyOTA2MjIwMFowaDELMAkG\nA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBl\ncmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMtY2Etc2Vy\ndmVyMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEgUyc93b9pywTGVR29AgfTz1y\n9bfQ+7bwnvkVrvLmzIqI0H+qG57tso2bpERbcDU3pRRGwk4IVPR3Y93xmxBR/6NF\nMEMwDgYDVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYE\nFEU+EPub2CjIRafXmgKE4otd83yQMAoGCCqGSM49BAMCA0gAMEUCIQCt7M/yKjQM\njc3LayUU7rYmX7eoO6PVC6A217gbkRfYeQIgAO3ayayUTL0xv1uwMJhuxIw9lFhJ\nTh/BWqkaVv+vrDs=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.superadmin.sosh.com",
+                "hostnameOverride": "peer0.superadmin.sosh.com"
+            }
+        },
+        "peer1.superadmin.sosh.com": {
+            "url": "grpcs://peer1.superadmin.sosh.com:8051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICFzCCAb2gAwIBAgIUXYIretT5j+z0zl2Lr+K68bW9Ex8wCgYIKoZIzj0EAwIw\naDELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMt\nY2Etc2VydmVyMB4XDTIwMDQwMTA2MjIwMFoXDTM1MDMyOTA2MjIwMFowaDELMAkG\nA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBl\ncmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMtY2Etc2Vy\ndmVyMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEgUyc93b9pywTGVR29AgfTz1y\n9bfQ+7bwnvkVrvLmzIqI0H+qG57tso2bpERbcDU3pRRGwk4IVPR3Y93xmxBR/6NF\nMEMwDgYDVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYE\nFEU+EPub2CjIRafXmgKE4otd83yQMAoGCCqGSM49BAMCA0gAMEUCIQCt7M/yKjQM\njc3LayUU7rYmX7eoO6PVC6A217gbkRfYeQIgAO3ayayUTL0xv1uwMJhuxIw9lFhJ\nTh/BWqkaVv+vrDs=\n-----END CERTIFICATE-----\n"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.superadmin.sosh.com",
+                "hostnameOverride": "peer1.superadmin.sosh.com"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca.superadmin.sosh.com": {
+            "url": "https://ca_superadmin:7054",
+            "caName": "ca-superadmin",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICFzCCAb2gAwIBAgIUXYIretT5j+z0zl2Lr+K68bW9Ex8wCgYIKoZIzj0EAwIw\naDELMAkGA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQK\nEwtIeXBlcmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMt\nY2Etc2VydmVyMB4XDTIwMDQwMTA2MjIwMFoXDTM1MDMyOTA2MjIwMFowaDELMAkG\nA1UEBhMCVVMxFzAVBgNVBAgTDk5vcnRoIENhcm9saW5hMRQwEgYDVQQKEwtIeXBl\ncmxlZGdlcjEPMA0GA1UECxMGRmFicmljMRkwFwYDVQQDExBmYWJyaWMtY2Etc2Vy\ndmVyMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEgUyc93b9pywTGVR29AgfTz1y\n9bfQ+7bwnvkVrvLmzIqI0H+qG57tso2bpERbcDU3pRRGwk4IVPR3Y93xmxBR/6NF\nMEMwDgYDVR0PAQH/BAQDAgEGMBIGA1UdEwEB/wQIMAYBAf8CAQEwHQYDVR0OBBYE\nFEU+EPub2CjIRafXmgKE4otd83yQMAoGCCqGSM49BAMCA0gAMEUCIQCt7M/yKjQM\njc3LayUU7rYmX7eoO6PVC6A217gbkRfYeQIgAO3ayayUTL0xv1uwMJhuxIw9lFhJ\nTh/BWqkaVv+vrDs=\n-----END CERTIFICATE-----\n"
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

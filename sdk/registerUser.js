@@ -15,11 +15,11 @@ module.exports.registerUser = async (username)=> {
         //Getting Username
         console.log('Username: ',username)
         // load the network configuration
-        const ccpPath = path.resolve(__dirname, '.', 'server-connection.json');
+        const ccpPath = path.resolve(__dirname, '.', 'network-connection.json');
         const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
 
         // Create a new CA client for interacting with the CA.
-        const caURL = ccp.certificateAuthorities['ca.superadmin.sosh.com'].url;
+        const caURL = ccp.certificateAuthorities['ca.org1.example.com'].url;
         const ca = new FabricCAServices(caURL);
 
         // Create a new file system based wallet for managing identities.
@@ -61,7 +61,7 @@ module.exports.registerUser = async (username)=> {
                 certificate: enrollment.certificate,
                 privateKey: enrollment.key.toBytes(),
             },
-            mspId: 'superadminMSP',
+            mspId: 'Org1MSP',
             type: 'X.509',
         };
         await wallet.put(username, x509Identity);
