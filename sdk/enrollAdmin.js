@@ -12,11 +12,13 @@ const path = require('path');
 module.exports.enrollAdmin = async ()=> {
     try {
         // load the network configuration
-        const ccpPath = path.resolve(__dirname, '.', 'network-connection.json');
+        // const ccpPath = path.resolve(__dirname, '.', 'network-connection.json');
+        const ccpPath = path.resolve(__dirname, '.', 'connection-users.json');
         const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
 
         // Create a new CA client for interacting with the CA.
-        const caInfo = ccp.certificateAuthorities['ca.org1.example.com'];
+        // const caInfo = ccp.certificateAuthorities['ca.org1.example.com'];
+        const caInfo = ccp.certificateAuthorities['ca.users.sosh.com'];
         const caTLSCACerts = caInfo.tlsCACerts.pem;
         const ca = new FabricCAServices(caInfo.url, { trustedRoots: caTLSCACerts, verify: false }, caInfo.caName);
 
@@ -39,7 +41,7 @@ module.exports.enrollAdmin = async ()=> {
                 certificate: enrollment.certificate,
                 privateKey: enrollment.key.toBytes(),
             },
-            mspId: 'Org1MSP',
+            mspId: 'usersMSP',
             type: 'X.509',
         };
         await wallet.put('admin', x509Identity);

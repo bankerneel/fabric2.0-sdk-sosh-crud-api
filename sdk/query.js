@@ -12,7 +12,8 @@ const fs = require('fs');
 module.exports.queryWalletDetails = async (username, channelName, contractName, functionName, UniqueId)=> {
     try {
         // load the network configuration
-        const ccpPath = path.resolve(__dirname, '.', 'network-connection.json');
+        // const ccpPath = path.resolve(__dirname, '.', 'network-connection.json');
+        const ccpPath = path.resolve(__dirname, '.', 'connection-users.json');
         const ccp = JSON.parse(fs.readFileSync(ccpPath, 'utf8'));
 
         // Create a new file system based wallet for managing identities.
@@ -30,7 +31,7 @@ module.exports.queryWalletDetails = async (username, channelName, contractName, 
 
         // Create a new gateway for connecting to our peer node.
         const gateway = new Gateway();
-        await gateway.connect(ccp, { wallet, identity: username, discovery: { enabled: true, asLocalhost: true } });
+        await gateway.connect(ccp, { wallet, identity: username, discovery: { enabled: true, asLocalhost: false } });
 
         // Get the network (channel) our contract is deployed to.
         const network = await gateway.getNetwork(channelName);
