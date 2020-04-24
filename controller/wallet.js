@@ -117,6 +117,7 @@ module.exports = {
         try {
             let username =  req.body.username
             let arguments = [req.body.fromId, req.body.toId,req.body.Amount]
+            console.log("arguments", arguments)
 
             let transferFunds = await wallet.invokeChaincode(username, 'soshchannel', 'wallet', 'TransferFunds', arguments)
             let msg = "Amount of "+ req.body.Amount +" has been to transfered from: "+ req.body.fromId+ " to "+req.body.toId+transferFunds
